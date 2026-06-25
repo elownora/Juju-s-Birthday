@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Happy Birthday Boo-Boo Bear 💜</title>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Quicksand:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Quicksand', sans-serif;
+  background: radial-gradient(circle at top, #1a0025, #0b0014 60%, #05000a);
+  color:white;
+  overflow-x:hidden;
+  padding-top:54px;
+}
+
+/* NAV BAR */
+.navbar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:500;
+  background:rgba(20,0,30,0.55);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(255,255,255,0.12);
+}
+
+.nav-inner{
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  padding:14px 16px;
+  overflow-x:auto;
+  white-space:nowrap;
+}
+
+.nav-inner a{
+  color:#f5c2ff;
+  text-decoration:none;
+  font-size:0.8rem;
+  font-weight:600;
+  letter-spacing:0.3px;
+  padding:7px 12px;
+  border-radius:20px;
+  transition:background 0.3s ease, color 0.3s ease;
+  flex-shrink:0;
+}
+
+.nav-inner a:hover{
+  background:rgba(168,85,247,0.3);
+  color:#fff;
+}
+
+/* MUSIC TOGGLE */
+.music-btn{
+  position:fixed;
+  bottom:22px;
+  right:22px;
+  z-index:600;
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,0.25);
+  background:rgba(168,85,247,0.4);
+  backdrop-filter:blur(10px);
+  color:white;
+  font-size:1.3rem;
+  cursor:pointer;
+  box-shadow:0 8px 20px rgba(0,0,0,0.45);
+}
+
+/* glow overlay */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(168,85,247,0.15), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(236,72,153,0.12), transparent 45%);
+  z-index:-2;
+}
+
+/* Floating bg images */
+.bg{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  overflow:hidden;
+}
+
+.bg img{
+  position:absolute;
+  width:180px;
+  height:180px;
+  object-fit:cover;
+  border-radius:18px;
+  opacity:0.65;
+  animation:float 25s linear infinite;
+  box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+
+@keyframes float{
+  0%{transform:translateY(100vh) rotate(0);}
+  100%{transform:translateY(-200px) rotate(360deg);}
+}
+
+/* HERO */
+.hero{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+}
+
+.hero h1{
+  font-family:'Poppins', sans-serif;
+  font-size:2.5rem;
+  color:#f5c2ff;
+  text-shadow:0 0 20px rgba(168,85,247,0.5);
+}
+
+.hero p{
+  margin-top:15px;
+  max-width:520px;
+  color:#e9d5ff;
+  line-height:1.6;
+}
+
+
+
+
+.open-full{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  padding:100px 20px;
+}
+
+.open-full h2{
+  font-size:2.2rem;
+  margin-bottom:30px;
+  text-shadow:0 0 20px rgba(168,85,247,0.4);
+}
+
+.envelope-grid{
+  transform:scale(1.1);
+  gap:18px;
+}
+
+.envelope{
+  width:190px;
+  padding:20px;
+  font-size:1.05rem;
+
+  background:rgba(255,255,255,0.07);
+  border:1px solid rgba(255,255,255,0.2);
+
+  border-radius:18px;
+
+  backdrop-filter: blur(12px);
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.4),
+    0 0 15px rgba(168,85,247,0.2);
+
+  transition:transform 0.3s ease;
+}
+
+.envelope:hover{
+  transform:translateY(-6px) scale(1.03);
+}
+
+
+
+.fullModal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+  backdrop-filter: blur(10px);
+}
+
+.modalBox{
+  width:90%;
+  max-width:500px;
+  text-align:center;
+}
+
+.modalBox h2{
+  color:#ffb3ff;
+  margin-bottom:20px;
+  font-family:'Poppins';
+}
+
+.cardBox{
+  height:300px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.15);
+
+  border-radius:20px;
+
+  font-size:1.2rem;
+  padding:20px;
+
+  box-shadow:0 10px 30px rgba(0,0,0,0.4);
+  transition:all 0.4s ease;
+}
+
+.controls{
+  margin-top:20px;
+  display:flex;
+  justify-content:center;
+  gap:20px;
+}
+
+.controls button{
+  padding:10px 20px;
+  border:none;
+  border-radius:10px;
+  background:#a855f7;
+  color:white;
+  cursor:pointer;
+}
+
+.closeBtn{
+  margin-top:20px;
+  padding:10px 20px;
+  border:none;
+  border-radius:20px;
+  background:#ff4da6;
+  color:white;
+  cursor:pointer;
+}
+
+.btn{
+  margin-top:25px;
+  padding:12px 24px;
+  border:none;
+  border-radius:30px;
+  background:#a855f7;
+  color:white;
+  cursor:pointer;
+}
+
+/* SECTIONS */
+.section{
+  padding:80px 20px;
+  text-align:center;
+}
+
+.section h2{
+  font-family:'Poppins', sans-serif;
+  color:#ffb3ff;
+  margin-bottom:20px;
+  text-shadow:0 0 15px rgba(168,85,247,0.4);
+}
+
+/* SWIPE SECTION */
+.fullscreen{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+
+
+.carousel-container{
+  width:100%;
+  overflow:hidden;
+  margin-top:20px;
+}
+
+.carousel{
+  display:flex;
+  width:100%;
+  transform:translateX(0);
+  transition:transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.slide{
+  min-width:100%;
+  height:420px;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+
+  font-size:1.4rem;
+  padding:30px;
+
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.15);
+
+  border-radius:25px;
+  backdrop-filter: blur(12px);
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.4),
+    0 0 25px rgba(168,85,247,0.25);
+
+  margin:0;
+}
+
+/* BUTTON */
+.next-btn{
+  margin-top:25px;
+  padding:12px 22px;
+  border:none;
+  border-radius:25px;
+  background:#a855f7;
+  color:white;
+  cursor:pointer;
+}
+
+/* OPEN WHEN */
+.envelope-grid{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:12px;
+}
+
+.envelope{
+  width:170px;
+  padding:15px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.15);
+  border-radius:15px;
+  cursor:pointer;
+  backdrop-filter: blur(10px);
+  box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* MEMORY LANE - auto sliding carousel (independent from the text carousels) */
+.memory-carousel-wrap{
+  width:90%;
+  max-width:480px;
+  overflow:hidden;
+  border-radius:22px;
+  margin-top:25px;
+
+  border:1px solid rgba(255,255,255,0.15);
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.4),
+    0 0 25px rgba(168,85,247,0.25);
+}
+
+.memory-carousel{
+  display:flex;
+}
+
+.memory-slide{
+  min-width:100%;
+  height:380px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:rgba(255,255,255,0.05);
+}
+
+.memory-slide img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:0.92;
+}
+
+/* CARDS */
+.scroll{
+  display:flex;
+  overflow-x:auto;
+  gap:15px;
+  padding:20px;
+}
+
+.card{
+  min-width:250px;
+  background:rgba(255,255,255,0.06);
+  padding:18px;
+  border-radius:15px;
+  border:1px solid rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* MODAL */
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+}
+
+.modal-content{
+  background:#1b0026;
+  padding:20px;
+  border-radius:15px;
+  max-width:500px;
+  max-height:80vh;
+  overflow:auto;
+  line-height:1.6;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV BAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="#home">Home</a>
+    <a href="#sec1">Reasons</a>
+    <a href="#openWhen">Open When</a>
+    <a href="#memoryLane">Memories</a>
+    <a href="#secAdmire">Admire</a>
+    <a href="#finalLetter">Letter</a>
+  </div>
+</nav>
+
+<!-- BACKGROUND MUSIC -->
+<audio id="bgMusic" src="bgmusic.mp3" loop></audio>
+<button id="musicToggle" class="music-btn" onclick="toggleMusic()">🔇</button>
+
+<!-- BACKGROUND -->
+<div class="bg">
+<script>
+for(let i=1;i<=15;i++){
+  document.write(`<img src="bg${i}.jpeg" style="left:${Math.random()*100}% ; animation-duration:${15+Math.random()*10}s;">`);
+}
+
+for(let i=16;i<=26;i++){
+  document.write(`<img src="bg${i}.jpeg" style="left:${Math.random()*100}% ; animation-duration:${15+Math.random()*10}s;">`);
+}
+
+for(let i=27;i<=40;i++){
+  document.write(`<img src="bg${i}.jpeg" style="left:${Math.random()*100}% ; animation-duration:${15+Math.random()*10}s;">`);
+}
+</script>
+</div>
+
+<!-- HERO -->
+<div class="hero" id="home">
+  <h1>Happy Birthday Boo-Boo Bear 🐻💜</h1>
+  <p>
+    Out of all the people in this world,<br>
+    somehow life gave me you.<br><br>
+    And I will always be grateful for that.
+  </p>
+
+  <button class="btn" onclick="document.getElementById('sec1').scrollIntoView({behavior:'smooth'})">
+    Start the Journey ✨
+  </button>
+</div>
+
+<!-- SWIPE SECTION -->
+<div class="section fullscreen" id="sec1">
+  <h2>Why You’ll Always Be My Person 💗</h2>
+
+  <div class="carousel-container">
+    <div class="carousel" id="carousel">
+
+      <!-- EACH CARD IS FULL PAGE -->
+      <!-- EACH CARD IS FULL PAGE -->
+<div class="slide">💫 You walked into my life and made ordinary days feel softer, calmer, and somehow brighter than before.</div>
+
+<div class="slide">🌙 Even when everything feels far away, your presence still feels close — like a quiet comfort I can rely on.</div>
+
+<div class="slide">🫂 You never had to stay, but you did… and that alone means more than words could ever fully explain.</div>
+
+<div class="slide">✨ You understand the parts of me I don’t even know how to explain, and that makes me feel seen in a rare way.</div>
+
+<div class="slide">💗 Life feels less heavy when I talk to you — like my thoughts finally slow down and breathe a little.</div>
+
+<div class="slide">😂 You don’t even try, but you still end up being the reason I laugh on the worst days without realizing it.</div>
+
+<div class="slide">🏡 With you, I don’t feel like I have to pretend or act different — it just feels like I can exist as I am.</div>
+
+<div class="slide">💞 You mean more to me than I probably show, but I hope you feel even a small part of how important you are.</div>
+
+<div class="slide">🌸 You care in such a pure and gentle way that it stays with people, even long after the moment passes.</div>
+
+<div class="slide">👑 There’s something about you that can’t be replaced — not because you try to stand out, but because you just are.</div>
+
+<div class="slide">💬 Talking to you feels easy, like I don’t have to filter my thoughts or hide behind perfect words.</div>
+
+<div class="slide">🌈 You bring color into days that felt dull, even when nothing around me actually changes except my mood.</div>
+
+<div class="slide">💜 If I had to go back and choose again, I’d still find my way back to you — every single time.</div>
+
+    </div>
+  </div>
+
+  <div class="controls">
+    <button onclick="prevSlide()">⬅</button>
+    <button onclick="nextSlide()">➡</button>
+  </div>
+
+  <button class="next-btn" onclick="document.getElementById('openWhen').scrollIntoView({behavior:'smooth'})">
+    Next Section 💌
+  </button>
+</div>
+
+
+<!-- OPEN WHEN -->
+<div class="section open-full" id="openWhen">
+  <h2>Open When 💌</h2>
+
+  <div class="envelope-grid">
+    <div class="envelope" onclick="openCategory('sad')">🌙 Sad</div>
+    <div class="envelope" onclick="openCategory('miss')">💙 Miss Me</div>
+    <div class="envelope" onclick="openCategory('motivation')">☀️ Motivation</div>
+    <div class="envelope" onclick="openCategory('giveup')">🫀 Give Up</div>
+    <div class="envelope" onclick="openCategory('smile')">😂 Smile</div>
+  </div>
+
+  <button class="next-btn" onclick="document.getElementById('memoryLane').scrollIntoView({behavior:'smooth'})">
+    Next Section 💌
+  </button>
+</div>
+
+<!-- FULLSCREEN MODAL -->
+<div class="fullModal" id="fullModal">
+
+  <div class="modalBox">
+
+    <h2 id="modalTitle">Title</h2>
+
+    <div class="cardBox">
+      <div id="cardText">Message</div>
+    </div>
+
+    <div class="controls">
+      <button onclick="prevCard()">⬅</button>
+      <button onclick="nextCard()">➡</button>
+    </div>
+
+    <button class="closeBtn" onclick="closeModal()">Close ✨</button>
+
+  </div>
+
+</div>
+
+<!-- MEMORY LANE (auto-sliding, independent carousel) -->
+<div class="section fullscreen" id="memoryLane">
+<h2>Memory Lane 💙</h2>
+
+<div class="memory-carousel-wrap">
+  <div class="memory-carousel" id="memoryCarousel"></div>
+</div>
+
+<button class="next-btn" onclick="document.getElementById('secAdmire').scrollIntoView({behavior:'smooth'})">
+  Next Section 💌
+</button>
+
+</div>
+
+<!-- ADMIRE -->
+
+<div class="section fullscreen" id="secAdmire">
+  <h2>Things I Admire 🌿</h2>
+
+  <div class="carousel-container">
+    <div class="carousel" id="carousel2">
+
+      <!-- EACH CARD IS FULL PAGE -->
+      <!-- THINGS I ADMIRE SLIDES -->
+<div class="slide">🌟 I admire how effortlessly you stay kind, even when life doesn’t always treat you the same way.</div>
+
+<div class="slide">💜 I admire the way you notice small things about people that most would easily overlook.</div>
+
+<div class="slide">🌙 I admire your calm presence — it somehow makes chaos feel less overwhelming just by being there.</div>
+
+<div class="slide">✨ I admire how real you are with your emotions, never pretending to be someone you’re not.</div>
+
+<div class="slide">🫶 I admire the way you show up for people quietly, without expecting anything in return.</div>
+
+<div class="slide">🌸 I admire your softness — not weakness, but the kind of strength that chooses gentleness every time.</div>
+
+<div class="slide">💫 I admire how your words can make a difference, even when you don’t realize their impact.</div>
+
+<div class="slide">🏡 I admire the comfort you bring — like a space where people feel safe just being themselves.</div>
+
+<div class="slide">🌈 I admire how you still manage to stay hopeful, even when things aren’t easy at all.</div>
+
+<div class="slide">💞 I admire your loyalty — once you care, you care in a way that truly stays consistent.</div>
+
+<div class="slide">👑 I admire your quiet confidence — not loud, not forced, just naturally present in who you are.</div>
+
+<div class="slide">💬 I admire how easy it is to talk to you, like conversations don’t need effort or overthinking.</div>
+
+<div class="slide">💗 Most of all, I admire the way you exist in a way that makes life feel a little more meaningful.</div>
+
+    </div>
+  </div>
+
+  <div class="controls">
+    <button onclick="prevSlide2()">⬅</button>
+    <button onclick="nextSlide2()">➡</button>
+  </div>
+
+  <button class="next-btn" onclick="document.getElementById('openWhen').scrollIntoView({behavior:'smooth'})">
+    Next Section 💌
+  </button>
+</div>
+
+
+
+<!-- FINAL -->
+<div class="section" id="finalLetter">
+<h2>Final Letter 💜</h2>
+<p style="max-width:700px;margin:auto;line-height:1.8;color:#e9d5ff;">
+Happy Birthday, Suju 💫💜<br><br>
+
+I don’t really know how to fit everything I feel for you into words, but I’ll try anyway — because today is one of those days where you deserve to feel how genuinely special you are. 🌸<br><br>
+
+You’re not just my best friend… you’re one of those rare people who make life feel lighter just by being in it. There’s something about you — the way you understand, the way you care, the way you stay — that makes everything around you feel a little more safe, a little more real, and a little more meaningful. 🌙✨<br><br>
+
+You’ve been there in ways that matter the most — not always in loud or dramatic ways, but in quiet, constant ones. And honestly, that kind of presence is something I’ll always be grateful for. 🫶<br><br>
+
+With you, I never feel like I have to explain myself too much. I can just be. And that’s not something I take lightly. You make space for people in a way that feels natural, like home doesn’t have to be a place — sometimes it can be a person. 🏡💗<br><br>
+
+I hope this year brings you everything that reflects how beautiful your heart is. I hope you get moments that make you smile without trying, people who treat you the way you deserve, and days that feel soft and kind to you. 🌈🌸<br><br>
+
+And even if life gets messy sometimes, I hope you always remember this — you matter. More than you realize, more than you say out loud, and more than you probably let yourself believe. 💞<br><br>
+
+I’m really lucky that it’s you. And I’ll always be glad that our paths crossed the way they did. ✨<br><br>
+
+Happy Birthday again, Babeeee 💜🎂<br>
+Stay as you are — because that version of you is already more than enough, always. 🌙💫
+</p>
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-content" id="modalText"></div>
+</div>
+
+<script>
+/* ===== BACKGROUND MUSIC TOGGLE ===== */
+const bgMusic = document.getElementById("bgMusic");
+const musicToggle = document.getElementById("musicToggle");
+let musicPlaying = true; // start playing automatically
+
+function toggleMusic(){
+  if(musicPlaying){
+    bgMusic.pause();
+    musicToggle.textContent = "🔇";
+  } else {
+    bgMusic.play().catch(()=>{}); // browsers may block until a user gesture - this click IS the gesture
+    musicToggle.textContent = "🔊";
+  }
+  musicPlaying = !musicPlaying;
+}
+
+/* ===== CAROUSEL 1: "Why You'll Always Be My Person" ===== */
+let index = 0;
+const carousel = document.getElementById("carousel");
+
+function update(){
+  carousel.style.transform = `translateX(-${index * 100}%)`;
+}
+
+function nextSlide(){
+  if(index < carousel.children.length - 1){
+    index++;
+    update();
+  }
+}
+
+function prevSlide(){
+  if(index > 0){
+    index--;
+    update();
+  }
+}
+
+/* MOBILE SWIPE - carousel 1 */
+let startX = 0;
+
+carousel.addEventListener("touchstart", e=>{
+  startX = e.touches[0].clientX;
+});
+
+carousel.addEventListener("touchend", e=>{
+  let endX = e.changedTouches[0].clientX;
+
+  if(startX - endX > 50) nextSlide();
+  else if(endX - startX > 50) prevSlide();
+});
+
+/* ===== CAROUSEL 2: "Things I Admire" (fully independent) ===== */
+let index2 = 0;
+const carousel2 = document.getElementById("carousel2");
+
+function update2(){
+  carousel2.style.transform = `translateX(-${index2 * 100}%)`;
+}
+
+function nextSlide2(){
+  if(index2 < carousel2.children.length - 1){
+    index2++;
+    update2();
+  }
+}
+
+function prevSlide2(){
+  if(index2 > 0){
+    index2--;
+    update2();
+  }
+}
+
+/* MOBILE SWIPE - carousel 2 */
+let startX2 = 0;
+
+carousel2.addEventListener("touchstart", e=>{
+  startX2 = e.touches[0].clientX;
+});
+
+carousel2.addEventListener("touchend", e=>{
+  let endX2 = e.changedTouches[0].clientX;
+
+  if(startX2 - endX2 > 50) nextSlide2();
+  else if(endX2 - startX2 > 50) prevSlide2();
+});
+
+/* ===== MEMORY LANE: auto-sliding, looping carousel ===== */
+(function(){
+  const track = document.getElementById("memoryCarousel");
+  const totalImages = 12;
+
+  // build slides
+  for(let i = 1; i <= totalImages; i++){
+    const slide = document.createElement("div");
+    slide.className = "memory-slide";
+    slide.innerHTML = `<img src="mem${i}.jpeg" alt="memory ${i}">`;
+    track.appendChild(slide);
+  }
+
+  // clone the first slide and append it at the end so the loop is seamless
+  const firstClone = track.children[0].cloneNode(true);
+  track.appendChild(firstClone);
+
+  const slideCount = track.children.length; // totalImages + 1 clone
+  let memIndex = 0;
+
+  track.style.transition = "transform 0.9s ease";
+  track.style.transform = "translateX(0%)";
+
+  function goTo(i, withTransition){
+    track.style.transition = withTransition ? "transform 0.9s ease" : "none";
+    track.style.transform = `translateX(-${i * 100}%)`;
+  }
+
+  function autoAdvance(){
+    memIndex++;
+    goTo(memIndex, true);
+
+    // once we've slid onto the cloned slide, snap back to the real first slide
+    if(memIndex === slideCount - 1){
+      track.addEventListener("transitionend", function resetLoop(){
+        track.removeEventListener("transitionend", resetLoop);
+        memIndex = 0;
+        goTo(memIndex, false);
+      });
+    }
+  }
+
+  setInterval(autoAdvance, 2500);
+})();
+
+/* ===== OPEN WHEN GROUPS ===== */
+let currentCategory = "";
+let currentIndex = 0;
+
+const data = {
+  sad: [
+    "💜 You are safe even in this feeling",
+    "🌙 This sadness will not stay forever",
+    "🫂 You are not alone",
+    "✨ I’m proud of you always",
+    "💗 You matter so much",
+    "🌸 Take your time to heal",
+    "💜 You are stronger than you feel",
+    "🌙 This moment will pass",
+    "🫶 You are deeply loved",
+    "💫 I believe in you",
+    "💜 Rest is okay",
+    "🌷 You are enough",
+    "🫂 I’m here with you",
+    "💗 You are not your sadness",
+    "🌙 Brighter days are coming",
+    "✨ You’ve survived before this",
+    "💜 Don’t give up on yourself",
+    "🌸 You are important",
+    "🫶 You are never alone",
+    "💗 I’m always cheering for you"
+  ],
+
+  miss: [
+    "💙 I miss you too",
+    "🌙 Distance can’t break us",
+    "🫂 You are always close in heart",
+    "💜 I still think of you",
+    "✨ We are connected always",
+    "💗 You are unforgettable",
+    "🌸 I carry you with me",
+    "💙 We’ll meet again",
+    "🫶 You matter deeply",
+    "🌙 You are not far from me",
+    "💜 Our bond is strong",
+    "✨ Memories keep us alive",
+    "💗 I miss our talks",
+    "🫂 You are still my person",
+    "🌸 Time doesn’t change us",
+    "💙 You are always in my mind",
+    "💜 I hope you feel this",
+    "🌙 We are still us",
+    "🫶 I miss you more than words",
+    "💗 Always connected"
+  ],
+
+  motivation: [
+    "☀️ Keep going",
+    "💜 You are capable",
+    "✨ Don’t stop now",
+    "🌸 You are improving",
+    "🫂 One step at a time",
+    "💗 You can do this",
+    "🌙 Believe in yourself",
+    "💜 You are strong",
+    "✨ Keep trying",
+    "🌸 Progress matters",
+    "☀️ You are closer than you think",
+    "💗 Don’t give up",
+    "🫶 You are growing",
+    "💜 Stay consistent",
+    "✨ Future you is proud",
+    "🌙 You’ve got this",
+    "💗 You are enough",
+    "☀️ Keep moving forward",
+    "🫂 You are powerful",
+    "💜 I believe in you"
+  ],
+
+  giveup: [
+    "🫀 Please don’t quit",
+    "💜 You matter too much",
+    "🌙 This is temporary",
+    "✨ You are needed",
+    "💗 You are strong",
+    "🫂 Hold on",
+    "💜 You are not alone",
+    "🌸 You can restart",
+    "💗 Things will change",
+    "✨ You are important",
+    "🫶 I believe in you",
+    "💜 Don’t disappear",
+    "🌙 You are still here for a reason",
+    "💗 You are loved",
+    "🫂 This is not the end",
+    "✨ Stay a little longer",
+    "💜 You are worth it",
+    "🌸 You matter deeply",
+    "💗 Please stay",
+    "🫶 I’m here for you"
+  ],
+
+  smile: [
+    "😂 You are secretly funny",
+    "💜 Remember our jokes?",
+    "🌸 You make life brighter",
+    "✨ I’m smiling because of you",
+    "💗 You are chaos in a good way",
+    "🫶 We are not normal 😂",
+    "🌙 You always make me laugh",
+    "💜 I miss our stupid talks",
+    "😂 You are adorable",
+    "✨ You brighten everything",
+    "💗 We are a comedy show",
+    "🌸 You are fun to talk to",
+    "🫂 I still laugh at us",
+    "💜 Never change",
+    "😂 You make everything better",
+    "🌙 I smile thinking of you",
+    "💗 You are happiness",
+    "✨ You are my favorite chaos",
+    "🫶 You make life fun",
+    "💜 Always smile :)"
+  ]
+};
+
+function openCategory(cat){
+  currentCategory = cat;
+  currentIndex = 0;
+
+  document.getElementById("modalTitle").innerText = cat.toUpperCase();
+  document.getElementById("fullModal").style.display = "flex";
+
+  updateCard();
+}
+
+function updateCard(){
+  document.getElementById("cardText").innerText =
+    data[currentCategory][currentIndex];
+}
+
+function nextCard(){
+  if(currentIndex < data[currentCategory].length - 1){
+    currentIndex++;
+    updateCard();
+  }
+}
+
+function prevCard(){
+  if(currentIndex > 0){
+    currentIndex--;
+    updateCard();
+  }
+}
+
+function closeModal(){
+  document.getElementById("fullModal").style.display = "none";
+}
+</script>
+
+</body>
+</html>
